@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+
+.error {
+  color: #ff0000;
+}
+
+.form-control-error {
+  border: 1px solid #ff0000;
+}
+
+.search-wrapper,.website-wrapper {
+  height: calc(100vh - 96px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+  
+.search-container,.website-container {
+  max-width: 700px;
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,.15);
+  background-color: #fff;
+}
+  
+.content {
+  form {
+    .search-url-details,.website-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 20px 0 12px 0;
+      .input-box {
+        margin-bottom: 15px;
+        width: calc(100% / 2 - 20px);
+          label {
+            &.label-title {
+              display: block;
+              font-weight: 500;
+              margin-bottom: 5px;
+            }
+          }
+          input {
+              height: 45px;
+              width: 100%;
+              outline: none;
+              font-size: 16px;
+              border-radius: 5px;
+              padding-left: 15px;
+              border: 1px solid #ccc;
+              border-bottom-width: 2px;
+              transition: all 0.3s ease;
+                &:focus,&:valid {
+                  border-color: #9b59b6;
+                }
+          }
+      }
+    }
+    .search-button {
+      height: 45px;
+      margin: 35px 0;
+        button {
+          height: 100%;
+          width: 100%;
+          border-radius: 5px;
+          border: none;
+          color: #fff;
+          font-size: 18px;
+          font-weight: 500;
+          letter-spacing: 1px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          background: linear-gradient(135deg, #71b7e6, #9b59b6); 
+            &:hover {
+              background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+            }
+        }
+    }
+  }
+}

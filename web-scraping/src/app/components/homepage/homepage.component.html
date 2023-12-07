@@ -1,0 +1,27 @@
+<section role="navigation">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand">Website Scraper Tool</a>
+    </div>
+  </nav>
+</section>
+
+<section role="form">
+  <div class="search-wrapper">
+    <div class="container search-container">
+      <div class="content">
+        <form novalidate [formGroup]="searchForm" (ngSubmit)="submit(searchForm)">
+          <div class="search-url-details">
+            <div class="input-box">
+              <label for="inputURL" class="label-title">URL</label>
+              <input type="text" placeholder="Enter URL" class="form-control" formControlName="websiteUrl" required>
+            </div>
+          </div>
+          <div class="search-button">
+            <button type="submit" class="btn" [disabled]="searchForm.invalid">Scrap</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

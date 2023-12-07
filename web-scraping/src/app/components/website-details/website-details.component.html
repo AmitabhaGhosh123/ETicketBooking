@@ -1,0 +1,50 @@
+<section role="form">
+    <div class="website-wrapper">
+        <div class="container website-container">
+            <div class="content">
+                <form novalidate [formGroup]="websiteForm">
+                    <div class="website-details">
+                        <div class="input-box">
+                            <label for="inputWebsiteUrl" class="label-title">Brand Website</label>
+                            <input type="text" class="form-control" readonly value="{{websiteUrl}}"
+                                formControlName="websiteUrl" />
+                        </div>
+                        <div class="input-box">
+                            <label for="inputWebsiteName" class="label-title">Brand Name</label>
+                            <input type="text" class="form-control" readonly value="{{websiteName}}"
+                                formControlName="websiteName" />
+                        </div>
+                        <div class="input-box">
+                            <label for="inputWebsiteLogo" class="label-title">Brand Logo</label>
+                            <img src="{{websiteLogo}}" width="50" height="50" alt="website logo" />
+                            <input type="file" accept="image/*" id="ImagePath" name="ImagePath" class="d-none"
+                                (change)="selectFile($event)">
+                            <label for="ImagePath">
+                                <span class="upload-file">Upload File</span>
+                            </label>
+                            <span>{{websiteLogoFileName}}</span>
+                        </div>
+                        <div class="input-box">
+                            <label for="inputWebsiteDesc" class="label-title">Brand Description</label>
+                            <textarea rows="4" cols="4" class="form-control" value="{{websiteDescription}}"
+                                formControlName="websiteDescription" readonly></textarea>
+                        </div>
+                        <div class="input-box">
+                            <label for="inputWebsiteKeyword" class="label-title">Brand Keywords</label>
+                            <textarea rows="4" cols="4" class="form-control" value="{{websiteKeywords}}"
+                                formControlName="websiteKeyword" readonly></textarea>
+                        </div>
+                        <div class="input-box position-relative">
+                            <label for="brandLogoColors" class="label-title">Brand Logo Colors</label>
+                            <div class="position-absolute top-50">
+                                <ng-container *ngFor="let color of websiteLogoColors">
+                                    <div class="color" [style.backgroundColor]=color></div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
