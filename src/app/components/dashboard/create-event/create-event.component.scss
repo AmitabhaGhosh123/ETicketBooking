@@ -1,0 +1,15 @@
+.currency-radiobox {
+    label {
+        &.label-title {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+    }
+    .form-check {
+       display: inline-block;
+       &-dollar {
+         padding-left: 3em;
+       }
+    }
+}

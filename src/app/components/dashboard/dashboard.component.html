@@ -1,0 +1,34 @@
+<section role="navigation">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <div class="container-fluid">
+          <a class="navbar-brand">Events Dashboard</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-lg-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="createevent">Create Event</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="vieworders">View Orders</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="viewevents">View Events</a>
+                </li>
+                <li class="nav-item" *ngIf="userRole && userRole != 'Admin'">
+                  <a class="nav-link" routerLink="booktickets">Book Tickets</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="" (click)="logOutUser()">Logout</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link login-text">Logged In as {{userRole}}</a>
+                </li>
+            </ul>		  
+          </div>
+        </div>
+    </nav>
+</section>	
+
+<router-outlet></router-outlet>

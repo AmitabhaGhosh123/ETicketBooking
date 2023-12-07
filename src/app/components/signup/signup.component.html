@@ -1,0 +1,85 @@
+<section role="form">
+    <div class="signup-wrapper">
+        <div class="container signup-container">
+          <div class="title">Registration</div>
+            <div class="content">
+              <form novalidate [formGroup]="signUpForm" (ngSubmit)="registerUser(signUpForm)">
+                <div class="signup-details">
+                  <div class="my-2 radiobox">
+                      <label for="inputRadio" class="label-title">Select Role</label>
+                      <div class="form-check">
+                        <input id="guest" type="radio" class="form-check-input" value="Guest" name="role" formControlName="role">
+                        <label class="form-check-label" for="guest">Guest</label>
+                      </div>
+                      <div class="form-check form-check-admin">
+                        <input id="admin" type="radio" class="form-check-input" value="Admin" name="role" formControlName="role">
+                        <label class="form-check-label" for="admin">Admin</label>
+                      </div>
+                  </div>
+                  <div class="input-box">
+                    <label for="inputUserName" class="label-title">Username</label>
+                    <input type="text" placeholder="Enter Username" class="form-control" formControlName="userName" required
+                    [ngClass]="{'form-control-error': signUpForm.get('userName').hasError('required') && (signUpForm.get('userName').touched || signUpForm.get('userName').dirty)}">
+                  </div>
+                  <div class="error" *ngIf="(signUpForm.get('userName').touched || signUpForm.get('userName').dirty)">
+                    <div *ngIf="signUpForm.get('userName').hasError('required')">
+                        Username is required
+                    </div>
+                    <div *ngIf="signUpForm.get('userName').hasError('maxlength')">
+                        Username can only contain upto 30 characters
+                    </div>
+                  </div>
+                  <div class="input-box">
+                    <label for="inputPassword" class="label-title">Password</label>
+                    <input type="password" placeholder="Enter Password" class="form-control" formControlName="password" required
+                    [ngClass]="{'form-control-error': signUpForm.get('password').hasError('required') && (signUpForm.get('password').touched || signUpForm.get('password').dirty)}">
+                  </div>
+                  <div class="error" *ngIf="(signUpForm.get('password').touched || signUpForm.get('password').dirty)">
+                    <div *ngIf="signUpForm.get('password').hasError('required')">
+                        Password is required
+                    </div>
+                    <div *ngIf="signUpForm.get('password').hasError('maxlength')">
+                        Password can only contain upto 10 characters
+                    </div>
+                    <div *ngIf="signUpForm.get('password').hasError('pattern')">
+                      Password should contain atleast one uppercase,lowercase,special and numeric values
+                    </div>
+                  </div>
+                  <div class="input-box">
+                    <label for="inputConfirmPassword" class="label-title">Confirm Password</label>
+                    <input type="text" placeholder="Enter Confirm Password" class="form-control" formControlName="confirmPassword" required>
+                  </div>
+                  <div class="error" *ngIf="(signUpForm.get('confirmPassword').touched || signUpForm.get('confirmPassword').dirty)">
+                    <div *ngIf="signUpForm.get('confirmPassword') != signUpForm.get('password')">
+                      Confirm Password should be same as Password
+                    </div>
+                  </div>
+                </div>
+                <div class="button">
+                  <button type="submit" class="btn" [disabled]="signUpForm.invalid">SignUp</button>
+                </div>
+              </form>
+          </div>
+        </div>
+    </div> 
+</section>
+
+<ng-container *ngIf="showError; else successMessage">
+    <div class="toast-container top-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body toast-error text-center">
+                {{signUpErrorMessage}}
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #successMessage>
+    <div class="toast-container top-0 end-0 p-3">
+      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body toast-success text-center">
+            {{signUpSuccessMessage}}
+        </div>
+      </div>
+    </div>
+</ng-template>

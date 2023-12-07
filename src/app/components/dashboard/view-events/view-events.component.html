@@ -1,0 +1,81 @@
+<section role="table">
+    <ng-container *ngIf="eventsList.length > 0">
+       <table>
+            <div class="caption">List of Events</div>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th scope="col">Event Name</th>
+                    <th scope="col">Event Ticket Price(per person)</th>
+                    <th scope="col">Event Venue</th>
+                    <th scope="col">Event Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let event of eventsList; let i = index">
+                    <td data-label="">
+                        <ng-container *ngIf="userRole && userRole != 'Guest';else adminRole">
+                            <button type="button" *ngIf="event.eventStatus != 'Cancelled'" (click)="updateEvent(event,i)">Cancel Event</button>
+                            <a class="cancelled-event" *ngIf="event.eventStatus == 'Cancelled'">Cancelled</a>
+                        </ng-container>
+                        <ng-template #adminRole>
+                            <button type="button" [ngClass]="{'disable-btn': event.eventStatus == 'Cancelled'}" [disabled]="event.eventStatus == 'Cancelled'" (click)="open(event)">Book Ticket</button>
+                        </ng-template>
+                    </td>
+                    <td data-label="Event Name">{{event.eventName}}</td>
+                    <td data-label="Event Price">{{event.eventPrice}} {{event.eventPriceCurrency}}</td>
+                    <td data-label="Event Venue">{{event.eventVenue}}</td>
+                    <td data-label="Event Date">{{event.eventDate | date}}</td>
+                </tr>
+            </tbody>
+       </table>
+    </ng-container>
+</section>
+
+<section role="alert">
+   <ng-container *ngIf="showErrorMessage">
+       <div class="alert alert-dismissible alert-danger text-center" role="alert">
+          {{ticketBookErrorMessage}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>
+   </ng-container>
+      
+   <ng-container *ngIf="showSuccessMessage">
+       <div class="alert alert-dismissible alert-success text-center" role="alert">
+          {{ticketBookSuccessMessage}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>
+   </ng-container>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="bookTicketModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Book Tickets</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form novalidate [formGroup]="bookTicketForm">
+            <div class="input-box">
+              <label for="inputTickets" class="label-title">No Of Tickets</label>
+              <input type="number" placeholder="Enter No of Tickets" class="form-control" formControlName="noOfTickets" required
+              (change)="onChangeNoOfTickets()">
+            </div>
+            <div class="input-box">
+              <label for="inputMobileNumber" class="label-title">Mobile Number</label>
+              <input type="text" placeholder="Enter Mobile Number" class="form-control" formControlName="mobileNumber" required>
+            </div>
+            <div class="text-end">
+              <span class="text-amount">Total Payable Amount</span> : {{totalPayableAmount}}
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="bookTicketForm.invalid" (click)="bookTicket(bookTicketForm)">Book</button>
+        </div>
+      </div>
+    </div>
+</div>

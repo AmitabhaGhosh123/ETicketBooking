@@ -1,0 +1,88 @@
+<section role="form">
+  <div class="event-wrapper">
+    <div class="container event-create-container">
+      <div class="title">Create Event</div>
+        <div class="content">
+          <form novalidate [formGroup]="createEventForm" (ngSubmit)="createEvent(createEventForm)">
+            <div class="event-details">
+              <div class="input-box">
+                <label for="inputEventName" class="label-title">Event Name</label>
+                <input type="text" placeholder="Enter Event Name" class="form-control" formControlName="eventName" required
+                [ngClass]="{'form-control-error': createEventForm.get('eventName').hasError('required') && (createEventForm.get('eventName').touched || createEventForm.get('eventName').dirty)}">
+
+                <div class="error" *ngIf="(createEventForm.get('eventName').touched || createEventForm.get('eventName').dirty)">
+                  <div *ngIf="createEventForm.get('eventName').hasError('required')">
+                      Event Name is required
+                  </div>
+                </div>
+              </div>
+              <div class="input-box">
+                <label for="inputEventPrice" class="label-title">Event Price</label>
+                <input type="text" placeholder="Enter Event Price" class="form-control" formControlName="eventPrice" required
+                [ngClass]="{'form-control-error': createEventForm.get('eventPrice').hasError('required') && (createEventForm.get('eventPrice').touched || createEventForm.get('eventPrice').dirty)}">
+                
+                <div class="error" *ngIf="(createEventForm.get('eventPrice').touched || createEventForm.get('eventPrice').dirty)">
+                  <div *ngIf="createEventForm.get('eventPrice').hasError('required')">
+                      Event Price is required
+                  </div>
+                </div>
+              </div>
+              <div class="input-box">
+                <label for="inputEventVenue" class="label-title">Event Venue</label>
+                <input type="text" placeholder="Enter Event Venue" class="form-control" formControlName="eventVenue" required
+                [ngClass]="{'form-control-error': createEventForm.get('eventVenue').hasError('required') && (createEventForm.get('eventVenue').touched || createEventForm.get('eventVenue').dirty)}">
+
+                <div class="error" *ngIf="(createEventForm.get('eventVenue').touched || createEventForm.get('eventVenue').dirty)">
+                  <div *ngIf="createEventForm.get('eventVenue').hasError('required')">
+                      Event Venue is required
+                  </div>
+                </div>
+              </div>
+              <div class="input-box">
+                <label for="inputEventDate" class="label-title">Event Date</label>
+                <input type="date" placeholder="Enter Event Date" class="form-control" formControlName="eventDate" required
+                [ngClass]="{'form-control-error': createEventForm.get('eventDate').hasError('required') && (createEventForm.get('eventDate').touched || createEventForm.get('eventDate').dirty)}">
+
+                <div class="error" *ngIf="(createEventForm.get('eventDate').touched || createEventForm.get('eventDate').dirty)">
+                  <div *ngIf="createEventForm.get('eventDate').hasError('required')">
+                      Event Date is required
+                  </div>
+                </div>
+              </div>
+              <div class="my-2 currency-radiobox">
+                <label for="inputRadio" class="label-title">Select Currency</label>
+                <div class="form-check">
+                  <input id="inrCurrency" type="radio" class="form-check-input" value="INR" name="eventPriceCurrency" formControlName="eventPriceCurrency">
+                  <label class="form-check-label" for="inrCurrency">INR</label>
+                </div>
+                <div class="form-check form-check-dollar">
+                  <input id="dollarCurrency" type="radio" class="form-check-input" value="Admin" name="eventPriceCurrency" formControlName="eventPriceCurrency">
+                  <label class="form-check-label" for="dollarCurrency">Dollar</label>
+                </div>
+              </div>
+            </div>
+            <div class="button">
+              <button type="submit" class="btn" [disabled]="createEventForm.invalid">Create</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section role="alert">
+  <ng-container *ngIf="showErrorMessage">
+    <div class="alert alert-dismissible alert-danger text-center" role="alert">
+      {{eventErrorMessage}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </ng-container>
+  
+  <ng-container *ngIf="showSuccessMessage">
+    <div id="success-alert" class="alert alert-dismissible alert-success text-center" role="alert">
+      {{eventSuccessMessage}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </ng-container>
+</section>
+

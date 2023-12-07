@@ -1,0 +1,211 @@
+/* You can add global styles to this file, and also import other style files */
+
+.error {
+  color: #ff0000;
+}
+
+.form-control-error {
+  border: 1px solid #ff0000;
+}
+
+.toast {
+  &-success {
+    background-color: #90ee90;
+  }
+  &-error {
+    background-color: #ff0000;
+  }
+}
+
+.event-wrapper,.signup-wrapper,.login-wrapper {
+  height: calc(100vh - 96px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+  
+.event-create-container,.signup-container,.login-container {
+    max-width: 700px;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.15);
+    background-color: #fff;
+     .title {
+       font-size: 25px;
+       font-weight: 500;
+       position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          height: 3px;
+          width: 30px;
+          border-radius: 5px;
+          background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+      }
+}
+  
+.content {
+      form {
+        .event-details,.signup-details,.login-details {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          margin: 20px 0 12px 0;
+          .input-box {
+            margin-bottom: 15px;
+            width: calc(100% / 2 - 20px);
+            label {
+              &.label-title {
+                display: block;
+                font-weight: 500;
+                margin-bottom: 5px;
+              }
+            }
+            input {
+              height: 45px;
+              width: 100%;
+              outline: none;
+              font-size: 16px;
+              border-radius: 5px;
+              padding-left: 15px;
+              border: 1px solid #ccc;
+              border-bottom-width: 2px;
+              transition: all 0.3s ease;
+                &:focus,&:valid {
+                  border-color: #9b59b6;
+                }
+            }
+          }
+        }
+        .button {
+          height: 45px;
+          margin: 35px 0;
+          button {
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6); 
+            &:hover {
+              background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+            }
+          }
+        }
+      }
+}
+  
+@media (max-width: 584px) {
+    .event-create-container,.signup-container,.login-container {
+      max-width: 100%;
+    }
+    .content {
+      form {
+        .event-details,.signup-details,.login-details {
+          max-height: 300px;
+          overflow-y: scroll;
+          ::-webkit-scrollbar {
+            width: 5px;
+          }
+          .input-box {
+            margin-bottom: 15px;
+            width: 100%;
+          }
+        }
+      }
+    }
+}
+
+.alert-success,alert-danger {
+  position: absolute;
+  top: 0;
+  width: 100%;
+   @media (min-width: 584px) {
+    top: 43px;
+    right: 0;
+    width: 45%;
+   }
+}
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+  caption-side: top;
+    .caption {
+      font-size: 1.5em;
+      margin: .5em 0 .75em;
+      display: table-caption;
+      text-align: center;
+    }
+    tr {
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      padding: .35em;
+    }
+    th,td {
+      padding: .625em;
+      text-align: center;
+    }
+    th {
+      font-size: .85em;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }  
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+     .caption {
+       font-size: 1.3em;
+     }
+     thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+     }
+     tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+     }
+     td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+       &::before {
+         /*
+          * aria-label has no advantage, it won't be read inside a table
+          content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+       }
+       &:last-child {
+        border-bottom: 0;
+       }
+     }
+  }
+}
